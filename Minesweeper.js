@@ -78,7 +78,8 @@ class Minesweeper{
 		ctx.translate(-center.x, center.y);
 		ctx.drawImage(mImg,center.x - mImg.width/2,-center.y - mImg.height/2);
 		ctx.restore();	
-
+		
+		ctx.beginPath();
 		//画指向线
 		ctx.moveTo(center.x, -center.y);
 		let closeMes = new Victor(mes.position.x-this.position.x,-(mes.position.y-this.position.y));
@@ -86,7 +87,7 @@ class Minesweeper{
 		ctx.lineTo(mes.position.x,mes.position.y);
 		ctx.strokeStyle = "red";
   		ctx.stroke();
-	
+		//ctx.clearRect(0,0,this.el.width,this.el.height);
 		//ctx.drawImage(img,this.position.x,this.position.y);
 	}
 	parse(mes){

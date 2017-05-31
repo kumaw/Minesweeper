@@ -7,7 +7,8 @@ class Map{
 		this.tick = 0;
 		//代数
 		this.generations = 0;
-		this.MinesweeperNum = 1
+
+		this.MinesweeperNum = 10
 		//基因群体，保存所有的基因序列
 		//this.thePopulation = [];
 
@@ -103,6 +104,7 @@ class Map{
 			console.log("最优："+this.gen.m_dBestFitness);
 
 			for(let i = 0;i<this.minesweepers.length;i++){
+				//console.log(newpopulation[i]);
 				this.minesweepers[i].PutWeights(newpopulation[i].Weights);
 			}
 			//处理
