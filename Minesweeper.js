@@ -61,6 +61,7 @@ class Minesweeper{
 		//计算下一个的位置,根据输入获取转向
 		this.el = c
 		let mes = this.findCloseMines(mines);
+		//找到最近点后，只能吃这个最近的
 		let input = this.parse(mes);
 		//let config = this.neuralNet.Update([mes.position.x,mes.position.y,this.lookat.x,this.lookat.y]);
 		//console.log(input);

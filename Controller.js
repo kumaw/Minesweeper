@@ -101,8 +101,8 @@ class Map{
 				population.push(new Genome(item.neuralNet.getWeights(),item.minesNum));
 			})
 			let newpopulation = this.gen.Epoch(population)
-			console.log("最优："+this.gen.m_dBestFitness);
-
+			console.log("最优适应值："+this.gen.m_dBestFitness);
+	
 			for(let i = 0;i<this.minesweepers.length;i++){
 				//console.log(newpopulation[i]);
 				this.minesweepers[i].PutWeights(newpopulation[i].Weights);
