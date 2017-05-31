@@ -1,0 +1,32 @@
+<html>
+<body>
+	
+<canvas id = "canvas" width="1000px" height="1000px">
+	
+</canvas>
+<script type="text/javascript" src="CParams.js"></script>
+<script type="text/javascript" src="victor.js"></script>
+<script type="text/javascript" src="Minesweeper.js"></script>
+<script type="text/javascript" src="Mines.js"></script>
+<script type="text/javascript" src="Neuron.js"></script>
+<script type="text/javascript" src="NeuronLayer.js"></script>
+<script type="text/javascript" src="NeuralNet.js"></script>
+<script type="text/javascript" src="Genome.js"></script>
+<script type="text/javascript" src="CGenAlg.js"></script>
+<script type="text/javascript" src="Controller.js"></script>
+
+<script type="text/javascript">
+
+	var mImg = new Image();
+	mImg.src = "Minesweeper.png"
+	mImg.onload = ()=>{
+		var id = document.getElementById('canvas');
+		var map = new Map(id);
+		map.start();
+	}
+	
+</script>
+
+</body>
+
+</html>
