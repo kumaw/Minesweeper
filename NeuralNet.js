@@ -84,21 +84,24 @@ class NeuralNet{
     	let output = [];
     	let weight = 0
     	//每层处理
+
     	for(let i=0;i<this.Layers.length;i++){
     		//第一层
     		if(i>0){
     			inputs = output;
     		}
     		output = [];
-    		weight = 0
+    		
     		for(let a=0;a<this.Layers[i].neurons.length;a++){
     			//对每个输入进行权重计算
-
+    			weight = 0
     			let neuron = this.Layers[i].neurons[a];
     			for(let b=0;b<inputs.length;b++){
     				weight = weight + inputs[b]*neuron.weights[b];
     			}
     			weight = weight + neuron.weights[neuron.inputNum - 1]*(-1);
+    
+
     			//输出的权重
     			output.push(this.Sigmoid(weight,1));
     		}

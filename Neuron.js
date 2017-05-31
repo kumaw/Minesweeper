@@ -7,9 +7,16 @@ class Neuron{
 		this.weights = [];
 		//输入权重
 		for(let i=0 ;i<this.inputNum;i++){
-			this.weights.push(Math.random());
+			//权重为1到-1的值
+			this.weights.push(RandomClamped());
 		}
 
 	}
 }
-
+//产生1到-1的数
+function RandomClamped()
+{   
+	var Range = 2;   
+	var Rand = Math.random();   
+	return -1 + Rand * Range;   
+} 

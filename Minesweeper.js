@@ -23,6 +23,8 @@ class Minesweeper{
 
 		//初始化一个神经网络
 		this.neuralNet = new NeuralNet(1,2,1,1);
+		//理想基因,测试用
+		//this.neuralNet.PutWeights([1,0,-1,-0.5,1,0.5])
 		this.el;
 	}
 	//找到最近的雷
@@ -63,10 +65,11 @@ class Minesweeper{
 		//let config = this.neuralNet.Update([mes.position.x,mes.position.y,this.lookat.x,this.lookat.y]);
 		//console.log(input);
 		let config = this.neuralNet.Update([input]);
+		
 		this.speed = (config[0]+config[1])*2;
 		let RotForce = config[0] - config[1];
 
-		this.lookat.rotate(Math.PI/180*RotForce*2);
+		this.lookat.rotate(-Math.PI/180*RotForce*10);
 
 		this.move();
 		var ctx=c.getContext("2d");
@@ -78,7 +81,7 @@ class Minesweeper{
 		ctx.translate(-center.x, center.y);
 		ctx.drawImage(mImg,center.x - mImg.width/2,-center.y - mImg.height/2);
 		ctx.restore();	
-		
+
 		ctx.beginPath();
 		//画指向线
 		ctx.moveTo(center.x, -center.y);

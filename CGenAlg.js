@@ -20,7 +20,7 @@ class CGenAlg{
 	Mutate(chromo){
 		for(let i=0;i<chromo.length;i++){
 			if(Math.random()<this.MutationRate){
-				chromo[i] = chromo[i] + Math.random()*0.01
+				chromo[i] = chromo[i] + RandomClamped()*0.01
 			}
 		}
 		return chromo;
