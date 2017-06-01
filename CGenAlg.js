@@ -20,11 +20,18 @@ class CGenAlg{
 	Mutate(chromo){
 		for(let i=0;i<chromo.length;i++){
 			if(Math.random()>this.MutationRate){
-				chromo[i] = chromo[i] + RandomClamped()*0.5
+				let newWeight = chromo[i] + RandomClamped()*0.1
+				while(newWeight> 1 || newWeight<-1){
+					newWeight = chromo[i] + RandomClamped()*0.1
+				}
+				chromo[i] = newWeight
 			}
 		}
 		return chromo;
 	}
+	// changeWeight(weight){
+	// 	return weight + RandomClamped()*0.1
+	// }
 	//交叉分裂
 	//参数均为数组
 	CrossoverAtSplits(mum,dad){

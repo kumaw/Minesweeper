@@ -45,11 +45,11 @@ class Minesweeper{
 		this.position = new Victor(center.x-this.width/2,(-center.y)-this.height/2);
 		if(this.position.x<0 || this.position.y<0){
 			//转向90度
-			this.lookat.rotate(Math.PI/180*90);
+			this.lookat.rotate(Math.PI);
 		}
 		if(this.position.x>this.el.width || this.position.y>this.el.height){
 			//转向90度
-			this.lookat.rotate(-Math.PI/180*90);
+			this.lookat.rotate(-Math.PI);
 		}
 	
 	}
