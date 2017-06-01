@@ -8,7 +8,7 @@ class Map{
 		//代数
 		this.generations = 0;
 
-		this.MinesweeperNum = 10
+		this.MinesweeperNum = 30
 		//基因群体，保存所有的基因序列
 		//this.thePopulation = [];
 
@@ -102,7 +102,7 @@ class Map{
 			})
 			let newpopulation = this.gen.Epoch(population)
 			console.log("最优适应值："+this.gen.m_dBestFitness);
-	
+
 			for(let i = 0;i<this.minesweepers.length;i++){
 				//console.log(newpopulation[i]);
 				this.minesweepers[i].PutWeights(newpopulation[i].Weights);

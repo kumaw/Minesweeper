@@ -19,8 +19,8 @@ class CGenAlg{
 	//变异
 	Mutate(chromo){
 		for(let i=0;i<chromo.length;i++){
-			if(Math.random()<this.MutationRate){
-				chromo[i] = chromo[i] + RandomClamped()*0.01
+			if(Math.random()>this.MutationRate){
+				chromo[i] = chromo[i] + RandomClamped()*0.5
 			}
 		}
 		return chromo;

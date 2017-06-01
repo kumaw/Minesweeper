@@ -26,8 +26,9 @@ class Minesweeper{
 		//理想基因,测试用
 		//this.neuralNet.PutWeights([1,0,-1,-0.5,1,0.5])
 		this.el;
+		//最近的雷
+		this.mes = null;
 	}
-	//找到最近的雷
 	//findMines
 	PutWeights(Weights){
 		this.minesNum = 0;
@@ -52,6 +53,7 @@ class Minesweeper{
 		}
 	
 	}
+	//检测雷是否是要找的
 	move(){
 		let center = this.getCenter();
 		let newcenter = center.add(new Victor(this.lookat.x*this.speed,this.lookat.y*this.speed));
@@ -60,6 +62,7 @@ class Minesweeper{
 	draw(c,mines){
 		//计算下一个的位置,根据输入获取转向
 		this.el = c
+
 		let mes = this.findCloseMines(mines);
 		//找到最近点后，只能吃这个最近的
 		let input = this.parse(mes);
