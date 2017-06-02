@@ -22,7 +22,7 @@ class Minesweeper{
 		this.minesNum = 0;
 
 		//初始化一个神经网络
-		this.neuralNet = new NeuralNet(1,2,1,1);
+		this.neuralNet = new NeuralNet(1,2,1,10);
 		//理想基因,测试用
 		//this.neuralNet.PutWeights([1,0,-1,-0.5,1,0.5])
 		this.el;
@@ -43,14 +43,27 @@ class Minesweeper{
 	//通过中心店计算定点左边
 	calculatePosition(center){
 		this.position = new Victor(center.x-this.width/2,(-center.y)-this.height/2);
-		if(this.position.x<0 || this.position.y<0){
-			//转向90度
-			this.lookat.rotate(Math.PI);
+		if(this.position.x<0){
+			this.position.x = 1000
 		}
-		if(this.position.x>this.el.width || this.position.y>this.el.height){
-			//转向90度
-			this.lookat.rotate(-Math.PI);
+		if(this.position.x>1000){
+			this.position.x = 0
 		}
+		if(this.position.y<0){
+			this.position.y = 1000
+		}
+		if(this.position.y>1000){
+			this.position.y = 0
+		}
+
+		// if(this.position.x<0 || this.position.y<0){
+		// 	//转向90度
+		// 	this.lookat.rotate(Math.PI);
+		// }
+		// if(this.position.x>this.el.width || this.position.y>this.el.height){
+		// 	//转向90度
+		// 	this.lookat.rotate(-Math.PI);
+		// }
 	
 	}
 	//检测雷是否是要找的
