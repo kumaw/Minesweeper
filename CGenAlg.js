@@ -126,6 +126,7 @@ class CGenAlg{
 				HighestSoFar = this.m_vecPop[i].dFitness;
 				this.m_iFittestGenome = i;
 				this.m_dBestFitness = HighestSoFar;
+				this.bestWeight = this.m_vecPop[i].Weights;
 			}
 			if(this.m_vecPop[i].dFitness < LowestSoFar){
 				LowestSoFar = this.m_vecPop[i].dFitness;
@@ -141,6 +142,7 @@ class CGenAlg{
 		this.m_dBestFitness= 0;
 		this.m_dWorstFitness= 9999999;
 		this.m_dAverageFitness= 0;
+		this.bestWeight = [];
 	}
 
 	

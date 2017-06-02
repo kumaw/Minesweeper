@@ -8,7 +8,7 @@ class Map{
 		//代数
 		this.generations = 0;
 
-		this.MinesweeperNum = 30
+		this.MinesweeperNum = 1
 		//基因群体，保存所有的基因序列
 		//this.thePopulation = [];
 
@@ -62,14 +62,18 @@ class Map{
 
 	draw(){
 		this.tick++; 
-		if(this.tick<1000){
+		if(this.tick<50000){
 			//碰撞检测
 			this.minesweepers.forEach(item=>{
+				// if(this.tick%100 == 0){
+				// 	console.log(item.minesNum);
+				// 	item.minesNum = 0
+				// }
 				this.mines = this.mines.filter(item1=>{
 					let has = item.checkMines(item1);
 					if(has){
 			
-						item.minesNum = item.minesNum +1;
+						item.minesNum = item.minesNum + 50;
 					}
 					return !item.checkMines(item1);
 				})
@@ -102,7 +106,7 @@ class Map{
 			})
 			let newpopulation = this.gen.Epoch(population)
 			console.log("最优适应值："+this.gen.m_dBestFitness);
-
+			console.log("最优适应基因："+this.gen.bestWeight);
 			for(let i = 0;i<this.minesweepers.length;i++){
 				//console.log(newpopulation[i]);
 				this.minesweepers[i].PutWeights(newpopulation[i].Weights);

@@ -25,6 +25,8 @@ class Minesweeper{
 		this.neuralNet = new NeuralNet(1,2,1,10);
 		//理想基因,测试用
 		//this.neuralNet.PutWeights([1,0,-1,-0.5,1,0.5])
+		//学习后结果
+		//this.neuralNet.PutWeights([0.8093479385566732,-0.36485673917210004,-0.7052942858957134,0.5004094529665257,-0.21185608883046025,0.6055228801113733,-0.6335183553914192,0.31767732353374645,-0.6854474093651042,0.008510577163611428,-0.8917255943745921,0.021629549904853246,0.3988248439320818,0.25176543571102933,-0.695182705041886,-0.20789850485107714,0.4387081621227437,-0.8151093118208131,0.4086191562836819,0.37020928301680567,-0.8049519921571984,0.3581238675964785,0.6780179291826485,0.9390707082129608,-0.6171358162242966,0.7196751331399858,-0.39426841494403103,0.31610648192281626,0.7656253151975498,0.7101173055593124,0.28148557283540454,0.4083902783261349,-0.905443147675752,0.297105924301617,-0.5778936405724958,0.6137900575650317,-0.8110548135440927,0.7846894203078864,-0.5205721752025328,0.8296115677093534,0.5062352291587247,-0.3940151603432056])
 		this.el;
 		//最近的雷
 		this.mes = null;
@@ -77,8 +79,8 @@ class Minesweeper{
 		this.el = c
 
 		let mes = this.findCloseMines(mines);
-		//找到最近点后，只能吃这个最近的
-		let input = this.parse(mes);
+
+		let input = this.parse(this.lookat,mes);
 		//let config = this.neuralNet.Update([mes.position.x,mes.position.y,this.lookat.x,this.lookat.y]);
 		//console.log(input);
 		let config = this.neuralNet.Update([input]);
@@ -86,9 +88,18 @@ class Minesweeper{
 		this.speed = (config[0]+config[1])*2;
 		let RotForce = config[0] - config[1];
 
-		this.lookat.rotate(-Math.PI/180*RotForce*10);
+		let smallRange = false;
+		let smallJuli = false
+		//增加适应性评分，新产生的角度在已知角度范围内，并且2点距离会变小 会有增加评分。
 
+		this.lookat.rotate(-Math.PI/180*RotForce*20);
+		//this.lookat.rotate(-Math.PI/180*RotForce*10);
+		let newInput = this.parse(this.lookat,mes);
+		if(Math.abs(newInput)<Math.abs(input)){
+			this.minesNum++;
+		}
 		this.move();
+
 		var ctx=c.getContext("2d");
 		var center = this.getCenter();
 		ctx.save();
@@ -110,12 +121,12 @@ class Minesweeper{
 		//ctx.clearRect(0,0,this.el.width,this.el.height);
 		//ctx.drawImage(img,this.position.x,this.position.y);
 	}
-	parse(mes){
+	parse(lookat,mes){
 		let closeMes = new Victor(mes.position.x-this.position.x,-(mes.position.y-this.position.y));
-		let cross = this.lookat.cross(closeMes);
-		let dot = this.lookat.dot(closeMes);
-		let a = dot/(this.lookat.distance(new Victor(0,0))*closeMes.distance(new Victor(0,0)))
-		let angle = Math.acos(a)*Math.PI/180;
+		let cross = lookat.cross(closeMes);
+		let dot = lookat.dot(closeMes);
+		let a = dot/(lookat.distance(new Victor(0,0))*closeMes.distance(new Victor(0,0)))
+		let angle = Math.acos(a);
 		if(cross>0){
 			return angle
 		}else{
